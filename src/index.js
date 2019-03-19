@@ -14,30 +14,19 @@ module.exports = function getZerosCount(number, base) {
 	  return arr;
   }
   
-  function noRepeat(arr){
-    let result = [];
-    arr.forEach(function(el, i) {
-      if (result.indexOf(el) === -1) {
-        result.push(el);
-      }
-    })
-  return result;
-  }
-
-
-  let s = simpleMultiplier(base);
-  let getCount = noRepeat(s);
-	let arrSum = [];
-	for(let count = 0; count < getCount.length; count++){
-		let sum = 0;
-		let result = 0;
-		let i = 1;
-		while(i < (number / getCount[count])){
-			result = Math.floor(number / Math.pow(getCount[count], i));
-			sum += result;
-			i++;
-		}
-		arrSum.push(sum);
+	function getMaxOfArray(numArray) {
+		return Math.max.apply(null, numArray);
 	}
-	return Math.min.apply(null, arrSum);
+
+
+	let getCount = getMaxOfArray(simpleMultiplier(base));
+	let sum = 0;
+	let result = 0;
+	let i = 1;
+	while(i < (number / getCount)){
+		result = Math.floor(number / Math.pow(getCount, i));
+		sum += result;
+		i++;
+	}
+	return sum;
 }
